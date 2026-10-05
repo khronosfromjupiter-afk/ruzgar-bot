@@ -246,12 +246,27 @@ async def ruzgar(update, context):
 
         h = data["hourly"]
 
+        # Open-Meteo'nun verdiği yerel saate göre
+        # içinde bulunduğumuz saatten itibaren başla
+        from datetime import datetime
+
+        current_time = datetime.now().strftime("%Y-%m-%dT%H:00")
+
+        start_index = 0
+
+        for i, forecast_time in enumerate(h["time"]):
+            if forecast_time >= current_time:
+                start_index = i
+                break
+
         message = (
             f"🪂 {point['name']}\n"
             f"🏔️ Zemin rakımı: {point['altitude']} m\n\n"
         )
 
-        for i in range(8):
+        end_index = min(start_index + 8, len(h["time"]))
+
+        for i in range(start_index, end_index):
             time = h["time"][i][11:16]
 
             message += "━━━━━━━━━━━━━━\n"
