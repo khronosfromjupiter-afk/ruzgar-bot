@@ -36,13 +36,13 @@ DEFAULT_POINTS = {
         "name": "Hani-TO",
         "lat": 38.4442142,
         "lon": 40.2847178,
-        "altitude": 0
+        "altitude": get_elevation(38.4442142, 40.2847178)
     },
     "yesildalli": {
         "name": "Yeşildallı",
         "lat": 37.9023469,
         "lon": 40.1392847,
-        "altitude": 0
+        "altitude": get_elevation(37.9023469, 40.1392847)
     }
 }
 
