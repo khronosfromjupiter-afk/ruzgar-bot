@@ -86,12 +86,7 @@ def get_weather(lat, lon):
             "wind_direction_10m",
             "wind_gusts_10m",
             "precipitation_probability",
-            "wind_speed_900hPa",
-            "wind_direction_900hPa",
-            "wind_speed_850hPa",
-            "wind_direction_850hPa",
-            "wind_speed_800hPa",
-            "wind_direction_800hPa"
+            
         ],
         "forecast_days": 1,
         "timezone": "Europe/Istanbul"
