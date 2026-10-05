@@ -81,13 +81,16 @@ def get_weather(lat, lon):
         "latitude": lat,
         "longitude": lon,
         "hourly": "temperature_2m,wind_speed_10m,wind_direction_10m,wind_gusts_10m,precipitation_probability",
-            
-        ],
-        "forecast_days": 1,
+        "forecast_days": 2,
         "timezone": "Europe/Istanbul"
     }
 
-    response = requests.get(url, params=params, timeout=30)
+    response = requests.get(
+        url,
+        params=params,
+        timeout=30
+    )
+
     response.raise_for_status()
 
     return response.json()
@@ -246,18 +249,21 @@ async def ruzgar(update, context):
 
         h = data["hourly"]
 
-        # Open-Meteo'nun verdiği yerel saate göre
-        # içinde bulunduğumuz saatten itibaren başla
+        # Open-Meteo'nun kendi yerel saatini kullanıyoruz
         from datetime import datetime
+        from zoneinfo import ZoneInfo
 
-        current_time = datetime.now().strftime("%Y-%m-%dT%H:00")
+        now = datetime.now(ZoneInfo("Europe/Istanbul"))
+        current_time = now.strftime("%Y-%m-%dT%H:00")
 
-        start_index = 0
-
-        for i, forecast_time in enumerate(h["time"]):
-            if forecast_time >= current_time:
-                start_index = i
-                break
+        # İçinde bulunduğumuz saate ait veriyi bul
+        start_index = next(
+            (
+                i for i, forecast_time in enumerate(h["time"])
+                if forecast_time >= current_time
+            ),
+            0
+        )
 
         message = (
             f"🪂 {point['name']}\n"
