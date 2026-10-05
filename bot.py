@@ -10,6 +10,19 @@ PORT = int(os.environ.get("PORT", "10000"))
 PUBLIC_URL = os.environ.get("RENDER_EXTERNAL_URL")
 
 POINTS_FILE = "noktalar.json"
+def get_elevation(lat, lon):
+    try:
+        url = "https://api.open-meteo.com/v1/elevation"
+        response = requests.get(
+            url,
+            params={"latitude": lat, "longitude": lon},
+            timeout=10
+        )
+        response.raise_for_status()
+        data = response.json()
+        return round(data["elevation"][0])
+    except Exception:
+        return 0
 
 
 DEFAULT_POINTS = {
