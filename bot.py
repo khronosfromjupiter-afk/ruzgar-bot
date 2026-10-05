@@ -80,12 +80,7 @@ def get_weather(lat, lon):
     params = {
         "latitude": lat,
         "longitude": lon,
-        "hourly": [
-            "temperature_2m",
-            "wind_speed_10m",
-            "wind_direction_10m",
-            "wind_gusts_10m",
-            "precipitation_probability",
+        "hourly": "temperature_2m,wind_speed_10m,wind_direction_10m,wind_gusts_10m,precipitation_probability",
             
         ],
         "forecast_days": 1,
