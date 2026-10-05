@@ -32,8 +32,8 @@ DEFAULT_POINTS = {
         "lon": 40.27268,
         "altitude": 631
     },
-    "hani-to": {
-        "name": "Hani-TO",
+    "hani": {
+        "name": "Hani",
         "lat": 38.4442142,
         "lon": 40.2847178,
         "altitude": get_elevation(38.4442142, 40.2847178)
