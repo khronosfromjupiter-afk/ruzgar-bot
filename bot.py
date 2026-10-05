@@ -267,32 +267,15 @@ async def ruzgar(update, context):
                 f"%{h['precipitation_probability'][i]}\n\n"
             )
 
-            message += "🏔️ Zemin / 10 m\n"
             message += (
-                f"💨 {h['wind_speed_10m'][i]:.0f} km/sa "
+                f"💨 Rüzgâr: "
+                f"{h['wind_speed_10m'][i]:.0f} km/sa "
                 f"{wind_direction(h['wind_direction_10m'][i])}\n"
             )
+
             message += (
                 f"💥 Gust: "
-                f"{h['wind_gusts_10m'][i]:.0f} km/sa\n\n"
-            )
-
-            message += "⬆️ 900 hPa\n"
-            message += (
-                f"💨 {h['wind_speed_900hPa'][i]:.0f} km/sa "
-                f"{wind_direction(h['wind_direction_900hPa'][i])}\n\n"
-            )
-
-            message += "⬆️ 850 hPa\n"
-            message += (
-                f"💨 {h['wind_speed_850hPa'][i]:.0f} km/sa "
-                f"{wind_direction(h['wind_direction_850hPa'][i])}\n\n"
-            )
-
-            message += "⬆️ 800 hPa\n"
-            message += (
-                f"💨 {h['wind_speed_800hPa'][i]:.0f} km/sa "
-                f"{wind_direction(h['wind_direction_800hPa'][i])}\n"
+                f"{h['wind_gusts_10m'][i]:.0f} km/sa\n"
             )
 
         await update.message.reply_text(message)
@@ -302,7 +285,6 @@ async def ruzgar(update, context):
             f"❌ Veri alınırken hata oluştu:\n"
             f"{type(e).__name__}: {e}"
         )
-
 
 def main():
     application = (
