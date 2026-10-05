@@ -11,15 +11,27 @@ PUBLIC_URL = os.environ.get("RENDER_EXTERNAL_URL")
 
 POINTS_FILE = "noktalar.json"
 
+
 DEFAULT_POINTS = {
     "gencan": {
         "name": "Gencan",
         "lat": 38.04898,
         "lon": 40.27268,
         "altitude": 631
+    },
+    "hani-to": {
+        "name": "Hani-TO",
+        "lat": 38.4442142,
+        "lon": 40.2847178,
+        "altitude": 0
+    },
+    "yesildalli": {
+        "name": "Yeşildallı",
+        "lat": 37.9023469,
+        "lon": 40.1392847,
+        "altitude": 0
     }
 }
-
 
 def load_points():
     if not os.path.exists(POINTS_FILE):
